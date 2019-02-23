@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.Models;
+using ShoppingCart.Services.Core;
 
 namespace ShoppingCart.Controllers
 {
@@ -12,26 +14,22 @@ namespace ShoppingCart.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IProductInventoryService _productInventoryService;
+
+        public ProductController(IProductInventoryService productInventoryService)
+        {
+            _productInventoryService = productInventoryService;
+        }
+
         [HttpGet]
         [Route("products")]
         [EnableCors("AllowSpecificOrigin")]
         public IEnumerable<Product> GetProducts()
         {
-            var products = new List<Product>();
-            products.Add(new Product { Name = "Sweater", Description = "Agora Wool Sweater", Price = 64.95m });
-            products.Add(new Product { Name = "Widget", Description = "Shiny new widget", Price = 5.95m });
-            products.Add(new Product { Name = "Pencil Case", Description = "Standard Issue Pencil Case", Price = 64.95m });
-
-            return products as IEnumerable<Product>;
+            // TODO: add in proper exception handling
+            var products = _productInventoryService.GetAvailableProducts();
+            
+            return products;
         }
-    }
-
-    public class Product
-    {
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public decimal Price { get; set; }
     }
 }

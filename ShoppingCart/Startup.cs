@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ShoppingCart.Services;
+using ShoppingCart.Services.Core;
 using VueCliMiddleware;
 
 namespace ShoppingCart
@@ -21,6 +23,8 @@ namespace ShoppingCart
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IProductInventoryService, ProductInventoryService>();
+            services.AddTransient<IPaymentGatewayService, PaymentGatewayService>();
 
             // In production, the Vue.js files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -30,6 +34,7 @@ namespace ShoppingCart
 
             services.AddCors(options =>
             {
+                // TODO: figure out what's going on with this!
                 //options.AddPolicy("AllowSpecificOrigin",
                 //    builder => builder.WithOrigins("http://localhost:8080/"));
                 options.AddPolicy("AllowSpecificOrigin",
