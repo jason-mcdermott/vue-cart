@@ -2,19 +2,25 @@
   {
     "id": "1",
     "name": "Widget 1",
-    "description": "A widget",
+    "description": "A very basic widget",
     "price": 4.75
   },
   {
     "id": "2",
     "name": "Widget 2",
-    "description": "A widget",
+    "description": "A slightly fancier widget",
     "price": 5.50
   },
   {
     "id": "3",
     "name": "Widget 3",
-    "description": "A widget",
+    "description": "A 'top-of-the-line' widget",
     "price": 6.90
+  },
+  {
+    "id": "4",
+    "name": "Widget 4",
+    "description": "A 'ne plus ultra' widget",
+    "price": 10.90
   }
 ]

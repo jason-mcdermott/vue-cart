@@ -1,20 +1,27 @@
 <template>
     <div id="app">
         <img alt="Vue logo" src="./assets/cart_large.png">
-        <Products msg="Welcome to VueCart" />
-        <ShoppingCart />
+        <h1>Welcome to VueCart</h1>
+        <!-- <p>These are the products we currently have available.</p> -->
+        <p>Thanks for stopping by</p>
+        <ProductList />
+        <hr />
+        <Cart />
+        <span>Total Cost: {{ totalCost | currency }}</span>
+        <hr />
+        <button :disabled="totalCost <= 0">Proceed to Checkout</button>
     </div>
 </template>
 
 <script>
-    import Products from './components/Products.vue'   
-    import ShoppingCart from './components/ShoppingCart.vue'
+    import { Store } from './state/Store'
 
     export default {
         name: 'app',
-        components: {
-            Products,
-            ShoppingCart
+        computed: {
+            totalCost(){
+                return Store.totalCost
+            }
         }
     }
 </script>

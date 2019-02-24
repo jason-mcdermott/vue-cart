@@ -1,6 +1,5 @@
 ﻿<template>
     <div>
-        
         <table id="cart">
             <thead>
                 <tr>
@@ -11,41 +10,38 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in cartItems">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.price }}</td>
+               <tr v-for="item in cartItems">
+                    <td>{{ item.details.name }}</td>
+                    <td>{{ item.details.description }}</td>
+                    <td>{{ item.details.price | currency }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td><button type="button" v-on:click="RemoveFromCart(item)">Remove</button></td>
+                    <td>
+                        <button type="button" v-on:click="decrement(item.details.id)"> - </button>
+                        <button type="button" v-on:click="removeFromCart(item.details.id)">Remove Item</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
-
-        <button>Proceed to checkout</button>
-
     </div>
 </template>
 <script>
+    import { Store } from '../state/Store'
+    
     export default {
-        name: 'ShoppingCart',
-        props: {
-           
-        },
-        data() {
-            return {
-                cartItems: []
-            };
+        computed: {
+            cartItems(){
+                return Store.$data.cartItems
+            }
         },
         methods: {
-            EmptyCart() {
-                this.cartItems = [];
+            decrement(id){
+                Store.decrement(id);
             },
-            AddToCart(item) {
-                this.cartItems.push(item);
+            removeFromCart(id){
+                Store.removeFromCart(id);
             },
-            RemoveFromCart(item) {
-                //let index = this.cartItems.IndexOf(x => x.name === item.name);
-                this.cartItems.$remove(0);
+            addToCart(product){
+                Store.addToCart(product);
             }
         }
     }
