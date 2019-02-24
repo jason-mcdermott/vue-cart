@@ -26,24 +26,24 @@ export const Store = new Vue({
                 this.cartItems[index].quantity++
             }
         },
-        decrement(id){
-            const index = this.cartItems.findIndex(cartItem => {
-                return cartItem.details.id === id
-            })
-
-            if(this.cartItems[index].quantity <= 1){
-                this.cartItems.splice(index, 1)
-            } 
-            else {
-                this.cartItems[index].quantity--
-            }
-        },
         removeFromCart(id) {
             for(let i = this.cartItems.length-1; i >= 0; i--){
                 if(this.cartItems[i].details.id === id){
                     this.cartItems.splice(i, 1)
                 }
             }
-        }
+        },
+        decrement(id) {
+            const index = this.cartItems.findIndex(cartItem => {
+                return cartItem.details.id === id
+            })
+
+            if (this.cartItems[index].quantity <= 1) {
+                this.cartItems.splice(index, 1)
+            }
+            else {
+                this.cartItems[index].quantity--
+            }
+        },
     }
 });

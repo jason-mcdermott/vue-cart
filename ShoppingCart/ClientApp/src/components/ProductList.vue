@@ -27,7 +27,7 @@
     export default {
         data() {
             return {
-                products: []//Store.$data.products
+                products: []
             };
         },
         created() {
