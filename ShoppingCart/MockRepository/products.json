@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "Widget 1",
+    "description": "A widget",
+    "price": 4.75
+  },
+  {
+    "id": "2",
+    "name": "Widget 2",
+    "description": "A widget",
+    "price": 5.50
+  },
+  {
+    "id": "3",
+    "name": "Widget 3",
+    "description": "A widget",
+    "price": 6.90
+  }
+]

@@ -1,17 +1,27 @@
 ﻿<template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
-        <p>
-            Ipsum Lorem Dolor
-        </p>
-        <h3>Items</h3>
-        <button type="button" v-on:click="EmptyCart">Empty Cart</button>
-        <button type="button" v-on:click="GetData">Get Data</button>
-        <ul id="example-1">
-            <li v-for="item in items">
-                {{ item.name }} | {{ item.description}} | {{ item.price }}
-            </li>
-        </ul>
+    <div>
+        
+        <table id="cart">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in cartItems">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><button type="button" v-on:click="RemoveFromCart(item)">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button>Proceed to checkout</button>
 
     </div>
 </template>
@@ -19,36 +29,23 @@
     export default {
         name: 'ShoppingCart',
         props: {
-            msg: String
+           
         },
         data() {
             return {
-                items: [
-                    { name: "Widget 1", description: "A widget", price: 4.00 },
-                    { name: "Widget 2", description: "A widget", price: 5.00 },
-                    { name: "Widget 3", description: "A widget", price: 6.00 }
-                ]
+                cartItems: []
             };
         },
         methods: {
             EmptyCart() {
-                this.items = [];
+                this.cartItems = [];
             },
-            GetData() {
-                this.items = [];
-                axios({
-                    method: 'GET',
-                    url: 'http://localhost:60568/api/products',
-                    data: this.$data,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(response => response.data).then(data => {
-                    console.log(data);
-                    this.items = data;
-                }).catch(err => {
-                    console.log(`There was an error submitting your form. See details: ${err}`);
-                });
+            AddToCart(item) {
+                this.cartItems.push(item);
+            },
+            RemoveFromCart(item) {
+                //let index = this.cartItems.IndexOf(x => x.name === item.name);
+                this.cartItems.$remove(0);
             }
         }
     }
