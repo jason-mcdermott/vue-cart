@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.Models;
 using ShoppingCart.Services.Core;
 
 namespace ShoppingCart.Controllers
@@ -18,7 +19,7 @@ namespace ShoppingCart.Controllers
         [HttpPost]
         [Route("")]
         [EnableCors("AllowSpecificOrigin")]
-        public bool CreateOrder()
+        public bool CreateOrder(Order order)
         {
             // TODO: add in proper exception handling
             var result = _paymentGatewayService.SubmitPayment();

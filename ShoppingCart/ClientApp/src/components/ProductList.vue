@@ -6,6 +6,7 @@
                     <th>Product</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,50 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+    table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        border-radius: 10px;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        padding: 8px;
+        background-color: #1b3e77;
+        color: white;
+    }
+
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    td:first-child, th:first-child {
+        border-left: none;
+    }
+
+    button {
+        border-radius: 10px;
+        background-color: #5DBCD2;
+        border: none;
+        color: white;
+        padding: 5px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #4798aa;
+    }
 
     h3 {
         margin: 40px 0 0;

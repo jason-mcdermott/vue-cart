@@ -1,4 +1,6 @@
 ﻿
+using Newtonsoft.Json;
+
 namespace ShoppingCart.Models
 {
     public class Product
