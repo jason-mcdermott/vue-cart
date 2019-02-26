@@ -10,32 +10,33 @@ export const Store = new Vue({
     computed: {
         totalCost(){
             return this.cartItems.reduce((acc, product) => {
-                return acc + product.details.price * product.quantity
+                return acc + product.price * product.quantity
             }, 0)
         }
     },
     methods: {
         addToCart(item){
             const index = this.cartItems.findIndex(cartItem => {
-                return cartItem.details.id === item.id
+                return cartItem.id === item.id
             });
 
             if (index === -1) {
-                this.cartItems.push({ details: item, quantity: 1 })
+                item.quantity = 1
+                this.cartItems.push(item)
             } else {
                 this.cartItems[index].quantity++
             }
         },
         removeFromCart(id) {
             for(let i = this.cartItems.length-1; i >= 0; i--){
-                if(this.cartItems[i].details.id === id){
+                if(this.cartItems[i].id === id){
                     this.cartItems.splice(i, 1)
                 }
             }
         },
         decrement(id) {
             const index = this.cartItems.findIndex(cartItem => {
-                return cartItem.details.id === id
+                return cartItem.id === id
             })
 
             if (this.cartItems[index].quantity <= 1) {

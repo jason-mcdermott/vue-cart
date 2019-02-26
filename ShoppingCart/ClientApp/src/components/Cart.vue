@@ -1,24 +1,20 @@
 ﻿<template>
-    <div>
+    <div class="shopping-cart">
         <table id="cart">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th></th>
+                    <th colspan="4" style="text-align:center">Cart</th>
                 </tr>
             </thead>
             <tbody>
                <tr v-for="item in cartItems">
-                    <td>{{ item.details.name }}</td>
-                    <td>{{ item.details.description }}</td>
-                    <td>{{ item.details.price | currency }}</td>
+                    <td>{{ item.name }}</td>
+                    <!--<td>{{ item.description }}</td>-->
+                    <td>{{ item.price | currency }}</td>
                     <td>{{ item.quantity }}</td>
                     <td>
-                        <button type="button" id="decrement" @click="decrement(item.details.id)"> - </button>
-                        <button type="button" id="remove" @click="removeFromCart(item.details.id)">Remove Item</button>
+                        <button type="button" id="decrement" @click="decrement(item.id)"> - </button>
+                        <button type="button" id="remove" @click="removeFromCart(item.id)">Remove Item</button>
                     </td>
                 </tr>
             </tbody>
@@ -52,11 +48,15 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+    .shopping-cart {
+        padding: 20px 0 20px;
+    }
+
     table {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
         border-radius: 10px;
-        width: 600px;
+        width: 400px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -77,8 +77,8 @@
     }
 
     button {
-        border-radius: 10px;
-        background-color: #5DBCD2;
+        /*border-radius: 4px;*/
+        /*background-color: #5DBCD2;*/
         border: none;
         color: white;
         padding: 5px 20px;
@@ -86,6 +86,15 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
+    }
+
+    #decrement {
+        border-radius: 4px 0 0 4px;
+        padding: 5px 10px 5px 10px;
+    }
+
+    #remove {
+        border-radius: 0 4px 4px 0;
     }
 
     button:hover {

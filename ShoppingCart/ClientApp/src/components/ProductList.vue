@@ -1,5 +1,5 @@
 ﻿<template>
-    <div>
+    <div class="product-list">
         <table id="products">
             <thead>
                 <tr>
@@ -51,10 +51,14 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+    .product-list {
+        padding: 0 0 20px;
+    }
+
     table {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
-        border-radius: 10px;
+        /*border-radius: 10px;*/
         width: 600px;
         margin-left: auto;
         margin-right: auto;
@@ -75,12 +79,20 @@
         text-align: left;
     }
 
-    td:first-child, th:first-child {
+    /*td:first-child, th:first-child {
         border-left: none;
+    }*/
+
+    /*table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
     }
 
+    table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }*/
+
     button {
-        border-radius: 10px;
+        border-radius: 4px;
         background-color: #5DBCD2;
         border: none;
         color: white;

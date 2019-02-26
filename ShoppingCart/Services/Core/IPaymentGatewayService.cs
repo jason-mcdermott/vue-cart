@@ -1,8 +1,10 @@
 ﻿
+using ShoppingCart.Models;
+
 namespace ShoppingCart.Services.Core
 {
     public interface IPaymentGatewayService
     {
-        bool SubmitPayment();
+        TransactionResult SubmitPayment(Order order);
     }
 }

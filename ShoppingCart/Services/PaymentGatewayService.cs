@@ -1,14 +1,22 @@
-﻿using ShoppingCart.Services.Core;
+﻿using ShoppingCart.Models;
+using ShoppingCart.Services.Core;
 
 namespace ShoppingCart.Services
 {
     public class PaymentGatewayService : IPaymentGatewayService
     {
-        public bool SubmitPayment()
+        public TransactionResult SubmitPayment(Order order)
         {
-            // TODO: add Thread.Sleep() to simulate time it takes to properly validate
-            // and submit a payment. Make sure to display a spinner on the Vue view.
-            return true;
+            return new TransactionResult
+            {
+                PurchasedItems = order.Items,
+                DeliveryAddress = order.PaymentInfo.Address
+            };
+
+            //var result = new TransactionResult();
+            //result.Errors.Add("Something bad happened.");
+
+            //return result;
         }
     }
 }

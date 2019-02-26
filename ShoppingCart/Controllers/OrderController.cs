@@ -19,10 +19,10 @@ namespace ShoppingCart.Controllers
         [HttpPost]
         [Route("")]
         [EnableCors("AllowSpecificOrigin")]
-        public bool CreateOrder(Order order)
+        public TransactionResult SubmitOrder(Order order)
         {
             // TODO: add in proper exception handling
-            var result = _paymentGatewayService.SubmitPayment();
+            var result = _paymentGatewayService.SubmitPayment(order);
             
             return result;
         }
