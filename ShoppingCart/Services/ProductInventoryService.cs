@@ -10,8 +10,7 @@ namespace ShoppingCart.Services
     {
         public IEnumerable<Product> GetAvailableProducts()
         {
-            // if any issues with retrieving data from products.json, uncomment this code:
-            //
+            /* if you have any issues with retrieving data from products.json, uncomment this code: */
             //var products = new List<Product>();
             //products.Add(new Product { Id = 1, Name = "Sweater", Description = "Agora Wool Sweater", Price = 64.95m });
             //products.Add(new Product { Id = 2, Name = "Widget", Description = "Shiny new widget", Price = 5.95m });

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.Models;
@@ -22,10 +23,7 @@ namespace ShoppingCart.Controllers
         [EnableCors("AllowSpecificOrigin")]
         public IEnumerable<Product> GetProducts()
         {
-            // TODO: add in proper exception handling
-            var products = _productInventoryService.GetAvailableProducts();
-            
-            return products;
+            return _productInventoryService.GetAvailableProducts();
         }
     }
 }

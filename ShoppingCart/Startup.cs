@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ShoppingCart.Attributes;
 using ShoppingCart.Services;
 using ShoppingCart.Services.Core;
 using VueCliMiddleware;
@@ -20,7 +21,9 @@ namespace ShoppingCart
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(config => config.Filters.Add(typeof(ExceptionFilter)))
+               .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             services.AddTransient<IProductInventoryService, ProductInventoryService>();
             services.AddTransient<IPaymentGatewayService, PaymentGatewayService>();
 
@@ -85,8 +88,6 @@ namespace ShoppingCart
                     spa.UseVueCli(npmScript: "serve", port: 8080);
                 }
             });
-
-            
         }
     }
 }

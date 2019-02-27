@@ -21,10 +21,7 @@ namespace ShoppingCart.Controllers
         [EnableCors("AllowSpecificOrigin")]
         public TransactionResult SubmitOrder(Order order)
         {
-            // TODO: add in proper exception handling
-            var result = _paymentGatewayService.SubmitPayment(order);
-            
-            return result;
+            return _paymentGatewayService.SubmitPayment(order);
         }
     }
 }

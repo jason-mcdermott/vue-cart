@@ -73,7 +73,7 @@
             </form>
         </div>
 
-        <div v-if="errors.length > 0">
+        <div v-if="errors.length > 0" class="errors">
             <ul v-for="error in errors">
                 <li>{{error}}</li>
             </ul>
@@ -197,6 +197,15 @@
         width: 600px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .errors {
+        color: #FF0000;
+    }
+
+    .errors li {
+        list-style-type: none;
+        padding: 0;
     }
 
     #transaction-summary {

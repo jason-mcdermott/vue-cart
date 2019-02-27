@@ -1,24 +1,30 @@
 ﻿<template>
     <div class="product-list">
-        <table id="products">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in products">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.price | currency }}</td>
-                    <td><button @click="addToCart(item)">Add</button></td>
-                </tr>
-            </tbody>
-        </table>
-
+        <div v-if="errors.length > 0" class="errors">
+            <ul v-for="error in errors">
+                <li>{{error}}</li>
+            </ul>
+        </div>
+        <div v-else>
+            <table id="products">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in products">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.price | currency }}</td>
+                        <td><button @click="addToCart(item)">Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 <script>
@@ -28,7 +34,8 @@
     export default {
         data() {
             return {
-                products: []
+                products: [],
+                errors: []
             };
         },
         created() {
@@ -53,6 +60,10 @@
 
     .product-list {
         padding: 0 0 20px;
+    }
+
+    .errors {
+        color: #FF0000;
     }
 
     table {
@@ -111,7 +122,7 @@
         margin: 40px 0 0;
     }
 
-    ul {
+    .errors ul {
         list-style-type: none;
         padding: 0;
     }
