@@ -10,22 +10,22 @@
                     </tr>
                     <tr>
                         <td colspan="6">
-                            <input type="text" id="cardnumber" required name="cardnumber" v-model="cardnumber" placeholder="1111-1111-1111-1111" />
-                            <!--<input type="text" id="cardnumber" name="cardnumber" v-model="cardnumber" placeholder="1111-1111-1111-1111" />-->
+                            <input type="text" id="cardnumber" required name="cardnumber" v-model="cardnumber" 
+                                   placeholder="1111-1111-1111-1111" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="1">
-                            <input type="text" id="month" required name="month" v-model="month" placeholder="MM" />
-                            <!--<input type="text" id="month" name="month" v-model="month" placeholder="MM" />-->
+                            <input type="text" id="month" required name="month" v-model="month" 
+                                   placeholder="MM" pattern="^[0-9]{2}$" title="2 digit month" />
                         </td>
                         <td colspan="4">
-                            <input type="text" id="year" required v-model="year" placeholder="YYYY" />
-                            <!--<input type="text" id="year" v-model="year" placeholder="YYYY" />-->
+                            <input type="text" id="year" required v-model="year" placeholder="YYYY"
+                                   pattern="^[0-9]{4}$" title="4 digit year" />
                         </td>
                         <td colspan="1">
-                            <input type="text" id="cvv" required v-model="cvv" placeholder="CVV" />
-                            <!--<input type="text" id="cvv" v-model="cvv" placeholder="CVV" />-->
+                            <input type="text" id="cvv" required v-model="cvv" placeholder="CVV" 
+                                   pattern="^[0-9]{3}$" title="3 digit security code"/>
                         </td>
                     </tr>
                     <tr>
@@ -35,38 +35,37 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <input type="text" required v-model="firstname" placeholder="First Name" />
-                            <!--<input type="text" v-model="firstname" placeholder="First Name" />-->
+                            <input type="text" required v-model="firstname" placeholder="First Name" 
+                                   pattern="[A-Za-z]+" title="only letters allowed" />
                         </td>
                         <td colspan="3">
-                            <input type="text" required v-model="lastname" placeholder="Last Name" />
-                            <!--<input type="text" v-model="lastname" placeholder="Last Name" />-->
+                            <input type="text" required v-model="lastname" placeholder="Last Name" 
+                                   pattern="[A-Za-z]+" title="only letters allowed" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3">
                             <input type="text" required v-model="address" placeholder="Address" />
-                            <!--<input type="text" v-model="address" placeholder="Address" />-->
                         </td>
                         <td colspan="3">
-                            <input type="text" required v-model="city" placeholder="City" />
-                            <!--<input type="text" v-model="city" placeholder="City" />-->
+                            <input type="text" required v-model="city" placeholder="City" 
+                                   pattern="[A-Za-z]+" title="only letters allowed" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <input type="text" required v-model="state" placeholder="State" />
-                            <!--<input type="text" v-model="state" placeholder="State" />-->
+                            <input type="text" required v-model="state" placeholder="State" 
+                                   pattern="[A-Za-z]{2}" title="two letter abbreviation" />
                         </td>
                         <td colspan="3">
-                            <input type="text" required v-model="zip" placeholder="Zip" />
-                            <!--<input type="text" v-model="zip" placeholder="Zip" />-->
+                            <input type="text" required v-model="zip" placeholder="Zip" 
+                                   pattern="^[0-9]{5}$" title="5 digit zip" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="6">
-                            <input type="text" required v-model="country" placeholder="Country" />
-                            <!--<input type="text" v-model="country" placeholder="Country" />-->
+                            <input type="text" required v-model="country" placeholder="Country" 
+                                   pattern="[A-Za-z]{3}" title="three letter country code" />
                         </td>
                     </tr>
                 </table>
