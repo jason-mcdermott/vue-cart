@@ -4,7 +4,8 @@ export const Store = new Vue({
     data() {
         return {
             products: [],
-            cartItems: []
+            cartItems: [],
+            transactionComplete: false
         };
     },
     computed: {

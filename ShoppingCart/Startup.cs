@@ -32,14 +32,10 @@ namespace ShoppingCart
 
             services.AddCors(options =>
             {
-                // TODO: figure out what's going on with this!
-                //options.AddPolicy("AllowSpecificOrigin",
-                //    builder => builder.WithOrigins("http://localhost:8080/"));
                 options.AddPolicy("AllowSpecificOrigin",
                     builder => builder.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowAnyHeader());
             });
 
         }
@@ -56,7 +52,6 @@ namespace ShoppingCart
                 app.UseHsts();
             }
 
-            // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
@@ -88,7 +83,6 @@ namespace ShoppingCart
                 if (env.IsDevelopment())
                 {
                     spa.UseVueCli(npmScript: "serve", port: 8080);
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:8080"); 
                 }
             });
 

@@ -1,6 +1,6 @@
 ﻿<template>
     <div>
-        <div class="payment-form">
+        <div v-show="!transactionComplete" class="payment-form">
             <form @submit.prevent="submitForm">
                 <table>
                     <tr>
@@ -10,22 +10,22 @@
                     </tr>
                     <tr>
                         <td colspan="6">
-                            <!--<input type="text" id="cardnumber" required name="cardnumber" v-model="cardnumber" placeholder="1111-1111-1111-1111" />-->
-                            <input type="text" id="cardnumber" name="cardnumber" v-model="cardnumber" placeholder="1111-1111-1111-1111" />
+                            <input type="text" id="cardnumber" required name="cardnumber" v-model="cardnumber" placeholder="1111-1111-1111-1111" />
+                            <!--<input type="text" id="cardnumber" name="cardnumber" v-model="cardnumber" placeholder="1111-1111-1111-1111" />-->
                         </td>
                     </tr>
                     <tr>
                         <td colspan="1">
-                            <!--<input type="text" id="month" required name="month" v-model="month" placeholder="MM" />-->
-                            <input type="text" id="month" name="month" v-model="month" placeholder="MM" />
+                            <input type="text" id="month" required name="month" v-model="month" placeholder="MM" />
+                            <!--<input type="text" id="month" name="month" v-model="month" placeholder="MM" />-->
                         </td>
                         <td colspan="4">
-                            <!--<input type="text" id="year" required v-model="year" placeholder="YYYY" />-->
-                            <input type="text" id="year" v-model="year" placeholder="YYYY" />
+                            <input type="text" id="year" required v-model="year" placeholder="YYYY" />
+                            <!--<input type="text" id="year" v-model="year" placeholder="YYYY" />-->
                         </td>
                         <td colspan="1">
-                            <!--<input type="text" id="cvv" required v-model="cvv" placeholder="CVV" />-->
-                            <input type="text" id="cvv" v-model="cvv" placeholder="CVV" />
+                            <input type="text" id="cvv" required v-model="cvv" placeholder="CVV" />
+                            <!--<input type="text" id="cvv" v-model="cvv" placeholder="CVV" />-->
                         </td>
                     </tr>
                     <tr>
@@ -35,38 +35,38 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <!--<input type="text" required v-model="firstname" placeholder="First Name" />-->
-                            <input type="text" v-model="firstname" placeholder="First Name" />
+                            <input type="text" required v-model="firstname" placeholder="First Name" />
+                            <!--<input type="text" v-model="firstname" placeholder="First Name" />-->
                         </td>
                         <td colspan="3">
-                            <!--<input type="text" required v-model="lastname" placeholder="Last Name" />-->
-                            <input type="text" v-model="lastname" placeholder="Last Name" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <!--<input type="text" required v-model="address" placeholder="Address" />-->
-                            <input type="text" v-model="address" placeholder="Address" />
-                        </td>
-                        <td colspan="3">
-                            <!--<input type="text" required v-model="city" placeholder="City" />-->
-                            <input type="text" v-model="city" placeholder="City" />
+                            <input type="text" required v-model="lastname" placeholder="Last Name" />
+                            <!--<input type="text" v-model="lastname" placeholder="Last Name" />-->
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <!--<input type="text" required v-model="state" placeholder="State" />-->
-                            <input type="text" v-model="state" placeholder="State" />
+                            <input type="text" required v-model="address" placeholder="Address" />
+                            <!--<input type="text" v-model="address" placeholder="Address" />-->
                         </td>
                         <td colspan="3">
-                            <!--<input type="text" required v-model="zip" placeholder="Zip" />-->
-                            <input type="text" v-model="zip" placeholder="Zip" />
+                            <input type="text" required v-model="city" placeholder="City" />
+                            <!--<input type="text" v-model="city" placeholder="City" />-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="text" required v-model="state" placeholder="State" />
+                            <!--<input type="text" v-model="state" placeholder="State" />-->
+                        </td>
+                        <td colspan="3">
+                            <input type="text" required v-model="zip" placeholder="Zip" />
+                            <!--<input type="text" v-model="zip" placeholder="Zip" />-->
                         </td>
                     </tr>
                     <tr>
                         <td colspan="6">
-                            <!--<input type="text" required v-model="country" placeholder="Country" />-->
-                            <input type="text" v-model="country" placeholder="Country" />
+                            <input type="text" required v-model="country" placeholder="Country" />
+                            <!--<input type="text" v-model="country" placeholder="Country" />-->
                         </td>
                     </tr>
                 </table>
@@ -79,8 +79,9 @@
                 <li>{{error}}</li>
             </ul>
         </div>
-        <!--<div v-else class="summary">
+        <div v-else-if="transactionComplete" class="summary">
             <div>
+                <h3>Transaction Summary</h3>
                 <table id="transaction-summary">
                     <thead>
                         <tr>
@@ -95,16 +96,26 @@
                             <td>{{ item.name }}</td>
                             <td>{{ item.description }}</td>
                             <td>{{ item.price | currency }}</td>
-                            <td>{{ item.quantity }}</td>
+                            <td style="text-align:center">{{ item.quantity }}</td>
                         </tr>
                     </tbody>
                 </table>
+                <span>Total: {{ totalCost | currency }}</span>
+                <h3>Shipping Information</h3>
+                <table id="shipping-address">
+                    <tr>
+                        <td> {{ firstname }} {{ lastname }}</td>
+                    </tr>
+                    <tr>
+                        <td> {{ address }}</td>
+                    </tr>
+                    <tr>
+                        <td> {{ city }} {{ state }} {{ zip }} </td>
+                    </tr>
+                </table>
             </div>
-        </div>-->
+        </div>
     </div>
-    
-
-    
 </template>
 
 <script>
@@ -130,6 +141,12 @@
                     purchasedItems: [],
                     totalCost: ''
                 },
+                transactionComplete: false
+            }
+        },
+        computed: {
+            totalCost() {
+                return Store.totalCost
             }
         },
         methods: {
@@ -162,6 +179,7 @@
                     }
                     else {
                         this.summary = response.data
+                        Store.$data.transactionComplete = this.transactionComplete = true;
                     }
                 })
                 .catch(e => {
@@ -180,6 +198,21 @@
         width: 600px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    #transaction-summary {
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        padding-bottom: 20px;
+    }
+
+    #shipping-address {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        padding-bottom: 20px;
     }
 
     input#cvv {

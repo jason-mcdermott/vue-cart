@@ -3,19 +3,19 @@
         <img alt="Vue logo" src="./assets/cart_large.png">
         <h1>Welcome to VueCart</h1>
         <transition name="fade">
-            <ProductList v-if="showProducts" />
-        </transition>
-        <!--<ProductList />-->
-        <transition name="fade">
-            <div v-if="totalCost > 0">
-                <Cart />
-                <div id="cost">Total Cost: {{ totalCost | currency }}</div>
-                <button @disabled="totalCost <= 0" @click="toggleForm()">Enter Payment Info</button>
+            <div v-if="!transactionComplete">
+                <ProductList />
+                <div v-if="totalCost > 0">
+                    <Cart />
+                    <div id="cost">Total Cost: {{ totalCost | currency }}</div>
+                    <button @disabled="totalCost <= 0" @click="toggleForm()">Enter Payment Info</button>
+                </div>
             </div>
         </transition>
         <transition name="fade">
             <PaymentForm v-if="showPayment" />
         </transition>
+
 </div>
 </template>
 
@@ -27,12 +27,14 @@
         computed: {
             totalCost(){
                 return Store.totalCost
+            },
+            transactionComplete() {
+                return Store.transactionComplete
             }
         },
         data() {
             return {
-                showPayment: false,
-                showProducts: true
+                showPayment: false
             }
         },
         methods: {
