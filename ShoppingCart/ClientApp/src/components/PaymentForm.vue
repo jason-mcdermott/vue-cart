@@ -248,7 +248,6 @@
 
     input[type=submit] {
         width: 100%;
-        /*background-color: #4CAF50;*/
         background-color: #5DBCD2;
         padding: 14px 20px;
         margin: 8px 0;

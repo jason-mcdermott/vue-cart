@@ -69,7 +69,6 @@
     table {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
-        /*border-radius: 10px;*/
         width: 600px;
         margin-left: auto;
         margin-right: auto;

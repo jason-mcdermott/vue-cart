@@ -9,7 +9,6 @@
             <tbody>
                <tr v-for="item in cartItems">
                     <td>{{ item.name }}</td>
-                    <!--<td>{{ item.description }}</td>-->
                     <td>{{ item.price | currency }}</td>
                     <td>{{ item.quantity }}</td>
                     <td>
@@ -77,8 +76,6 @@
     }
 
     button {
-        /*border-radius: 4px;*/
-        /*background-color: #5DBCD2;*/
         border: none;
         color: white;
         padding: 5px 20px;
