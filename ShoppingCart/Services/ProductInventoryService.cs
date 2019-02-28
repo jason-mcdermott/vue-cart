@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
+using ShoppingCart.MockRepository.Core;
 using ShoppingCart.Models;
 using ShoppingCart.Services.Core;
 
@@ -8,6 +7,12 @@ namespace ShoppingCart.Services
 {
     public class ProductInventoryService : IProductInventoryService
     {
+        private readonly IProductRepository _repository;
+
+        public ProductInventoryService(IProductRepository repository)
+        {
+            _repository = repository;
+        }
         public IEnumerable<Product> GetAvailableProducts()
         {
             /* if you have any issues with retrieving data from products.json, uncomment this code: */
@@ -15,23 +20,10 @@ namespace ShoppingCart.Services
             //products.Add(new Product { Id = 1, Name = "Sweater", Description = "Agora Wool Sweater", Price = 64.95m });
             //products.Add(new Product { Id = 2, Name = "Widget", Description = "Shiny new widget", Price = 5.95m });
             //products.Add(new Product { Id = 3, Name = "Pencil Case", Description = "Standard Issue Pencil Case", Price = 64.95m });
-            
-            var products = GetMockData("MockRepository/products.json");
+
+            var products = _repository.GetProductList();
 
             return products as IEnumerable<Product>;
         }
-
-        private IList<Product> GetMockData(string path)
-        {
-            List<Product> products = new List<Product>();
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string json = reader.ReadToEnd();
-                products = JsonConvert.DeserializeObject<List<Product>>(json);
-            }
-
-            return products;
-        }
-
     }
 }

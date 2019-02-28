@@ -4,7 +4,7 @@ namespace ShoppingCart.Models
 {
     public class Order
     {
-        public IList<Product> Items { get; set; }
+        public IList<Product> Items { get; set; } = new List<Product>();
 
         public PaymentInfo PaymentInfo { get; set; }
     }

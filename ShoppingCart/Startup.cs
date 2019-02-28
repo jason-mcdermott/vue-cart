@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShoppingCart.Attributes;
+using ShoppingCart.MockRepository;
+using ShoppingCart.MockRepository.Core;
 using ShoppingCart.Services;
 using ShoppingCart.Services.Core;
 using VueCliMiddleware;
@@ -26,6 +28,11 @@ namespace ShoppingCart
             
             services.AddTransient<IProductInventoryService, ProductInventoryService>();
             services.AddTransient<IPaymentGatewayService, PaymentGatewayService>();
+            services.AddTransient<IProductRepository, ProductRepository>(
+                serviceProvider =>
+                {
+                    return new ProductRepository("MockRepository/products.json");
+                });
 
             // In production, the Vue.js files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -40,7 +47,6 @@ namespace ShoppingCart
                         .AllowAnyMethod()
                         .AllowAnyHeader());
             });
-
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -56,7 +62,6 @@ namespace ShoppingCart
             }
 
             app.UseCors("AllowSpecificOrigin");
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
